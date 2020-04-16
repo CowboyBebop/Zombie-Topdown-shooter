@@ -8,26 +8,49 @@ using Sirenix.OdinInspector;
 
 namespace Weapon
 {
-    public class WeaponController : SerializedMonoBehaviour
+    public class WeaponController : MonoBehaviour
     {
-        [OdinSerialize] private IWeapon currentWeapon;
+        private IWeapon currentWeapon;
+
+        Pistol pistol = new Pistol();
+        Rifle rifle = new Rifle();
 
         private void Awake()
         {
-            /**
-             * Current Weapon is an IWeapon that will contain a List of Actions
-            **/
 
 
             //var currentWeaponComponents = currentWeapon.GetType().Assembly.GetTypes().
             //Where(type => type.GetInterface(typeof(IWeaponComponent).Name) != null);
 
+            pistol.Initialize();
+            rifle.Initialize();
 
-            currentWeapon.Initialize();
+            currentWeapon = pistol as IWeapon;
         }
 
         private void Update()
         {
+            //Debug.Log(currentWeapon.WeaponActions);
+
+            foreach (WeaponAction weaponAction in currentWeapon.WeaponActions)
+            {
+                //GetKeyDown may cause a problem in the future since some actions may need GetKey or GetKeyUp instead
+                if (Input.GetKeyDown(weaponAction.actionKey))
+                {
+                    weaponAction.actionEvent();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                currentWeapon = pistol as IWeapon;
+                Debug.Log("Switching to Pistol");
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                currentWeapon = rifle as IWeapon;
+                Debug.Log("Switching to Rifle");
+            }
         }
     }
 }

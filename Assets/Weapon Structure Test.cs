@@ -30,37 +30,6 @@ namespace Weapon
 
     }
 
-    public interface IReloadable : IWeaponComponent
-    {
-
-    }
-
-    public class TestWeapon : IWeapon, IReloadable, IMelee
-    {
-        public int BaseAttackDamage { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public float WeaponKnockback { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public WeaponState WeaponState { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public WeaponType WeaponType { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-        public void DoAttack()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Initialize()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
-    public interface IMelee : IWeaponComponent
-    {
-
-    }
-    public interface IWeaponComponent
-    {
-
-    }
     public abstract class RangedWeapon : IWeapon
     {
         public abstract int BaseAttackDamage { get; set; }

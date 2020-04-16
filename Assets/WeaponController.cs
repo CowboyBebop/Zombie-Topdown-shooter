@@ -14,16 +14,16 @@ namespace Weapon
 
         private void Awake()
         {
+            /**
+             * Current Weapon is an IWeapon that will contain a List of Actions
+            **/
+
+
             //var currentWeaponComponents = currentWeapon.GetType().Assembly.GetTypes().
             //Where(type => type.GetInterface(typeof(IWeaponComponent).Name) != null);
 
-            
 
-            //currentWeapon.Initialize();
-        }
-
-        private void InitializeTestWeapon()
-        {
+            currentWeapon.Initialize();
         }
 
         private void Update()
